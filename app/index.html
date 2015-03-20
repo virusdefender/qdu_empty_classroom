@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar-nav~.mui-content {
+				padding-top: 50px;
+			}
+			.mui-card .mui-control-content {
+				padding: 10px;
+			}
+			.mui-control-content {
+				height: 150px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">青大空教室查询</h1>
+			<a class="mui-icon mui-icon-bars mui-pull-right" href="settings.html"></a>
+		</header>
+		<div class="mui-content">
+			<div style="padding: 10px 10px;">
+				<div id="segmentedControl" class="mui-segmented-control">
+					<a class="mui-control-item mui-active" id="query_tab" href="#query">
+				教学楼
+			</a>
+					<a class="mui-control-item" id="results_tab" href="#results">
+				查询结果
+			</a>
+
+				</div>
+			</div>
+			<div id="query" class="mui-control-content mui-active" style="padding-bottom: 400px;">
+				<div id="east_campus">
+					<h5 class="mui-content-padded">东校区</h5>
+					<div class="mui-card">
+						<div class="mui-input-group">
+							<div class="mui-input-row mui-radio">
+								<label>西院一教</label>
+								<input name="building" type="radio" value="13041.2706" id="13041.2706">
+							</div>
+							<div class="mui-input-row mui-radio">
+								<label>西院二教</label>
+								<input name="building" type="radio" value="13041.2748" id="13041.2748">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="central_campus">
+					<h5 class="mui-content-padded">中心校区</h5>
+					<div class="mui-card">
+						<div class="mui-input-group">
+							<div class="mui-input-row mui-radio">
+								<label>博远楼</label>
+								<input name="building" type="radio" value="1709.1954" id="1709.1954">
+							</div>
+							<div class="mui-input-row mui-radio">
+								<label>博学楼</label>
+								<input name="building" type="radio" value="1709.1783" id="1709.1783">
+							</div>
+							<div class="mui-input-row mui-radio">
+								<label>博知楼</label>
+								<input name="building" type="radio" value="1709.1904" id="1709.1904">
+							</div>
+							
+							<div class="mui-input-row mui-radio">
+								<label>博文楼</label>
+								<input name="building" type="radio" value="1709.1847" id="1709.1847">
+							</div>
+
+							<div class="mui-input-row mui-radio">
+								<label>东十二</label>
+								<input name="building" type="radio" value="1709.2278" id="1709.2278">
+							</div>
+							<div class="mui-input-row mui-radio">
+								<label>北院教学楼</label>
+								<input name="building" type="radio" value="2348.2349" id="2348.2349">
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<h5 class="mui-content-padded">选择时间</h5>
+				<div class="mui-card">
+					<div class="mui-input-group">
+						<div class="mui-input-row mui-select">
+							<label>教学周</label>
+							<select name="week">
+								<option value="1">第一周</option>
+								<option value="2">第二周</option>
+								<option value="3">第三周</option>
+								<option value="4">第四周</option>
+								<option value="5">第五周</option>
+								<option value="6">第六周</option>
+								<option value="7">第七周</option>
+								<option value="8">第八周</option>
+								<option value="9">第九周</option>
+								<option value="10">第十周</option>
+								<option value="11">第十一周</option>
+								<option value="12">第十二周</option>
+								<option value="13">第十三周</option>
+								<option value="14">第十四周</option>
+								<option value="15">第十五周</option>
+								<option value="16">第十六周</option>
+								<option value="17">第十七周</option>
+								<option value="18">第十八周</option>
+								<option value="19">第十九周</option>
+								<option value="20">第二十周</option>
+							</select>
+						</div>
+						<div class="mui-input-row mui-select">
+							<label>星期</label>
+							<select name="weekday">
+								<option value="1">星期一</option>
+								<option value="2">星期二</option>
+								<option value="3">星期三</option>
+								<option value="4">星期四</option>
+								<option value="5">星期五</option>
+								<option value="6">星期六</option>
+								<option value="7">星期天</option>
+							</select>
+						</div>
+						<div class="mui-input-row mui-select">
+							<label>第几节课</label>
+							<select name="class">
+								<option value="1">1-2节</option>
+								<option value="2">3-4节</option>
+								<option value="3">5-6节</option>
+								<option value="4">7-8节</option>
+								<option value="5">9-11节</option>
+							</select>
+						</div>
+					</div>
+
+				</div>
+				<div class="mui-button-row" style="padding: 10px;10px;">
+					<button class="mui-btn mui-btn-primary mui-btn-block" onclick="query1()">
+						<span class="mui-icon mui-icon-search"></span> 提交
+					</button>
+				</div>
+			</div>
+			<div id="results" class="mui-control-content">
+				
+			</div>
+			<script src="js/mui.min.js"></script>
+			<script src="js/app.js"></script>
+			<script>
+				mui.init();
+				
+				var p = "l";
+
+				function to_results() {
+					p = "r";
+					document.getElementById("results_tab").className = "mui-control-item mui-active";
+					document.getElementById("query_tab").className = "mui-control-item";
+					document.getElementById("query").className = "mui-control-content";
+					document.getElementById("results").className = "mui-control-content mui-active";
+				}
+
+				function to_query() {
+					p = "l";
+					document.getElementById("results_tab").className = "mui-control-item";
+					document.getElementById("query_tab").className = "mui-control-item mui-active";
+					document.getElementById("query").className = "mui-control-content mui-active";
+					document.getElementById("results").className = "mui-control-content";
+				}
+
+				function update_results(data) {
+					
+					html = '<ul class="mui-table-view">';
+					for(var i in data){
+						console.log(data[i]);
+						if(data[i][1] == 0)
+						    html += ('<li class="mui-table-view-cell">' + data[i][0] + '</li>');
+					}
+					if(html == '<ul class="mui-table-view">'){
+						plus.nativeUI.toast("没有找到空教室！");
+						return;
+					}
+					document.getElementById("results").innerHTML = html;
+				}
+
+				function query1() {
+					var w = plus.nativeUI.showWaiting("    正在查询...    ");
+					var building = null;
+					var r = document.getElementsByName("building");
+					for (var i in r) {
+						if (r[i].checked == true) {
+							building = r[i].value;
+						}
+					}
+					if (building == null) {
+						plus.nativeUI.toast("请选择教学楼！");
+						w.close();
+						return;
+					}
+					plus.storage.setItem("building", building);
+					//console.log(building);
+					var week = document.getElementsByName("week")[0].value;
+					var week_day = document.getElementsByName("weekday")[0].value;
+					var _class = document.getElementsByName("class")[0].value;
+					var url = 'http://1.qec1.sinaapp.com/?q=' + building + "." + week + "." + week_day + "." + _class;
+					console.log(url);
+					mui.ajax(url, {
+						dataType: 'json',
+						type: 'get',
+						timeout: 6000,
+						success: function(data) {
+							//服务器返回响应，根据响应结果，分析是否登录成功；
+							w.close();
+							window.scrollTo(0, 0);
+							if(data["status"] == "error"){
+								w.close();
+							    plus.nativeUI.toast("查询失败！");
+							    return
+							}
+							update_results(data["data"]);
+							to_results();
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							w.close();
+							plus.nativeUI.toast("查询失败！");
+							console.log(errorThrown);
+						}
+					});
+				}
+
+				function set_default_option(t, value) {
+					for (var i, j = 0; i = t.options[j]; j++) {
+						if (i.value == value) {
+							t.selectedIndex = j;
+							break;
+						}
+					}
+				}
+
+				function init_data() {
+					var date = new Date()
+					var timestamp = Date.parse(new Date()); 
+					var month = date.getMonth();
+					//获取星期几
+					var week_day = date.getDay().toString();
+					var t = document.getElementsByName("weekday")[0];
+					set_default_option(t, week_day);
+					//获取第几周
+					t = timestamp - 1425830401000;
+					set_default_option(document.getElementsByName("week")[0], (parseInt(t / 604800000) + 1).toString());
+					//获取几点几分 计算第几节课
+					var hour = date.getHours();
+					var minute = date.getMinutes();
+					var m = hour * 60 + minute;
+					var sel = document.getElementsByName("class")[0]
+					if(m <= 60 * 9 + 50){
+						set_default_option(sel, 1);
+						return
+					}
+					if(m > 60 * 9 + 50 && m <= 12 * 60){
+						set_default_option(sel, 2);
+						return;
+					}
+					
+					//51以后两点上课
+					if(month >= 5){
+						if(m > 12 * 60 && m <= 15 * 60 + 50){
+							set_default_option(sel, 3);
+							return;
+						}
+						if(m > 15 * 60 + 50 && m <= 17 * 60 + 50){
+							set_default_option(sel, 4);
+							return;
+						}
+						set_default_option(sel, 5);
+					}
+					else{
+						if(m > 12 * 60 && m <= 15 * 60 + 20){
+							set_default_option(sel, 3);
+							return;
+						}
+						if(m > 15 * 60 + 20 && m <= 17 * 60 +20){
+							set_default_option(sel, 4);
+							return;
+						}
+						set_default_option(sel, 5);
+					}
+				}
+				mui.plusReady(function() {
+					plus.webview.currentWebview().setStyle({
+						scrollIndicator: 'none'
+					});
+					plus.key.addEventListener('backbutton', function() {
+						if(p == "r"){
+							to_query();
+						}
+						else{
+							plus.nativeUI.confirm("确认退出？", function(e) {
+								if (e.index == 0) {
+									plus.runtime.quit();
+								}
+							}, "确认退出", ["确认", "取消"]);
+						}
+					}, false);
+					document.getElementById("query").addEventListener("swipeleft", function() {
+						//console.log("left");
+						to_results();
+					});
+					document.getElementById("results").addEventListener("swiperight", function() {
+						//console.log("right");
+						to_query();
+					});
+					var campus = get_default_campus();
+					for (var i in campus) {
+						document.getElementById(campus[i]).style.display = "";
+					}
+					if (campus.indexOf("c:e") < 0) {
+						if (campus.indexOf("central_campus") < 0) {
+							document.getElementById("central_campus").style.display = "none";
+						}
+						if (campus.indexOf("east_campus") < 0) {
+							document.getElementById("east_campus").style.display = "none";
+						}
+					}
+					var b = plus.storage.getItem("building");
+					if (b != null) {
+						document.getElementById(b).checked = true;
+					}
+					init_data();
+				});
+				 //(function($) {})(mui);
+			</script>
+
+	</body>
+
+</html>

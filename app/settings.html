@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar-nav~.mui-content {
+				padding-top: 50px;
+			}
+			.mui-card .mui-control-content {
+				padding: 10px;
+			}
+			.mui-control-content {
+				height: 150px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">设置</h1>
+			<a class="mui-icon mui-icon-arrowleft mui-pull-left" href="index.html"></a>
+		</header>
+		<div class="mui-content">
+
+			<div id="settings">
+				<h5 class="mui-content-padded">显示的校区</h5>
+				<div class="mui-card">
+					<div class="mui-input-group">
+						<div class="mui-input-row mui-checkbox">
+							<label>东校区</label>
+							<input name="east_campus" type="checkbox" value="east_campus">
+						</div>
+						<div class="mui-input-row mui-checkbox">
+							<label>中心校区</label>
+							<input name="central_campus" type="checkbox" value="central_campus">
+						</div>
+					</div>
+				</div>
+				<div class="mui-button-row" style="padding: 10px;10px;">
+					<button class="mui-btn mui-btn-primary mui-btn-block" onclick="save_settings()">
+						保存
+					</button>
+				</div>
+				<h5 class="mui-content-padded">关于</h5>
+				<div class="mui-card">
+					<div onclick="feedback()">
+					本app由virusdefender开发，数据来源于教务系统抓取。教务系统调课等会造成空教室信息变化，查询有误的话，请多多包涵~
+					如有任何意见或者建议，点击这里进行反馈。</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
+		<script>
+			mui.init();
+			
+			function feedback(){
+				plus.runtime.openURL("https://virusdefender.net/index.php/archives/197/");
+			}
+
+			function save_settings() {
+				var e = document.getElementsByName("east_campus")[0].checked;
+				var c = document.getElementsByName("central_campus")[0].checked;
+				if (!e && !c) {
+					plus.nativeUI.toast("至少选择一个！");
+					return;
+				}
+				if (c && e) {
+					plus.storage.setItem("campus", "c:e")
+				} else if (c == true) {
+					plus.storage.setItem("campus", "c")
+				} else {
+					plus.storage.setItem("campus", "e")
+				}
+				plus.nativeUI.toast("保存成功！");
+			}
+			mui.plusReady(function() {
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				plus.key.addEventListener('backbutton', function() {
+					window.location.href = "index.html";
+				}, false);
+				var campus = get_default_campus();
+				for (var i in campus) {
+					document.getElementsByName(campus[i])[0].checked = true;
+				}
+			});
+		</script>
+
+	</body>
+
+</html>
