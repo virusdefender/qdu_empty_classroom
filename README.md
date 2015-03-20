@@ -1,6 +1,6 @@
 #青岛大学空教室查询
 
-*app*目录是客户端，使用http://dcloud.io/打包生成。
+*app*目录是客户端，使用 http://dcloud.io/ 打包生成。
 
 *server*目录是服务器端，部署在新浪云上，依赖kvdb。
 
