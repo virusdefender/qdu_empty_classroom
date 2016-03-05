@@ -12,7 +12,20 @@ class Spider(object):
     def __init__(self):
         self.cookies = {}
         self.r = re.compile(
-            u'<tr style="display:" id="tr\d+"[^>]*?>\s*<td>([^<]*?)</td>[\s\S]+?<tr align="center" >[\s\S]+?<tr align="center" >\s*<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>')
+            u'<tr style="display:" id="tr\d+"[^>]*?>\s*<td>([^<]*?)</td>[\s\S]+?<tr align="center" >[\s\S]+?<tr align="center" >\s*'
+            u'<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*'
+            u'<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*'
+            u'<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*'
+            u'<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*'
+            u'<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)[\s\S]*?(?:</font></a>|)</td>\s*'
+            u'<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*'
+            u'<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*'
+            u'<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*'
+            u'<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*'
+            u'<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)[\s\S]*?(?:</font></a>|)</td>\s*'
+            u'<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*'
+            u'<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>\s*'
+            u'<td[^>]*?>(?:<a href="#" title="[^"]*?"><font color="#\w+">|)([\s\S]*?)(?:</font></a>|)</td>')
 
     def request(self, url, data):
         return requests.post(url, data=data, cookies=self.cookies)
@@ -48,32 +61,17 @@ class Spider(object):
         print "finish: week:" + week + " week_day:" + week_day
         return "success"
 
-'''
-info = [
-        {"campus_name": u"中心校区", "id": "1709",
-         "buildings": [{"building_name": u"东12", "id": "2278"},
-                       {"building_name": u"博文楼", "id": "1847"},
-                       {"building_name": u"博远楼", "id": "1954"},
-                       {"building_name": u"博知楼", "id": "1904"},
-         ]},
-        {"campus_name": u"中心北院", "id": "2348",
-         "buildings": [{"building_name": u"教学楼", "id": "2349"}
-         ]},
-        {"campus_name": u"东校区", "id": "13041",
-         "buildings": [{"building_name": u"西院一教", "id": "2706"},
-                       {"building_name": u"西院二教", "id": "2748"}
-         ]}
-    ]
-    '''
+
 if __name__ == "__main__":
     s = Spider()
-    s.cookies = {"JSESSIONID": "246D37FBEB5AC630D8A24FEDBF04A485.TAC1;"}
-    # s.craw("1709", "2278", "3", "3")
+    s.cookies = {"JSESSIONID": "8B7DA565F71772D37B04170241A757A8.TAB2;"}
     pool = ThreadPool(size=20)
     pool.start()
 
     for week in range(1, 21):
         for week_day in range(1, 8):
             print "start week:" + str(week) + " week_day:" + str(week_day)
+            # 请自行确定info.py中的校区id和教学楼id是正确的
+            # 然后按照info.py中的数据修改校区和教学楼id
             pool.append_job(s.craw, "1709", "1783", str(week), str(week_day))
     pool.join()
