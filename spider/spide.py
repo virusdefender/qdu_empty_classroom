@@ -55,9 +55,8 @@ class Spider(object):
                     else:
                         l.append(1)
             rooms.append(l)
-        f = open("data/" + campus + "." + building + "." + week + "." + week_day + ".json", "w")
-        f.write(json.dumps(rooms))
-        f.close()
+        with open("data/" + campus + "." + building + "." + week + "." + week_day + ".json", "w") as f:
+            f.write(json.dumps(rooms))
         print "finish: week:" + week + " week_day:" + week_day
         return "success"
 
